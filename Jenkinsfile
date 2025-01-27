@@ -26,12 +26,15 @@ pipeline {
                 sh 'npm install'
             } 
         }
-        stage('Deploy') {
+        stage('Docker Build') {
             when {
                 expression { env.GIT_BRANCH == 'origin/main' } // This stage will run when the branch is main only, if there is any other branch then the pipeline will skip this stage
             }
             steps {
-                sh "echo This is Deploy"
+                sh """
+                docker build -t jagadeesh3373/backend:${appVersion}
+                docker images
+                """
             }
         }
         stage('Print Params') {
