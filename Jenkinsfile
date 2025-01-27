@@ -32,7 +32,7 @@ pipeline {
             }
             steps {
                 sh """
-                docker build -t jagadeesh3373/backend:${appVersion}
+                docker build -t jagadeesh3373/backend:${appVersion} .
                 docker images
                 """
             }
